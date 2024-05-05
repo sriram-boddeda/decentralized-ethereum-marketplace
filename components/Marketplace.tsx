@@ -1,11 +1,13 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import { title, subtitle } from "@/components/primitives";
+import { title } from "@/components/primitives";
 import { Abi, ContractAddress } from "@/config/smart-contract";
 import ListItem from "./ListItem";
 import ItemsListTable from "./ItemsListTable";
 import Item from "@/types/Item";
 import Account from "@/types/Account";
+import { Link, User } from "@nextui-org/react";
+// import { MetaMaskIcon } from "@/components/icons";
 
 export default function MarketPlace({
 	account,
@@ -36,6 +38,21 @@ export default function MarketPlace({
 		<div>
 			<div className="flex items-center justify-between">
 				<h1 className={title()}>Explore Our Marketplace</h1>
+				<Link
+					isExternal
+					className="truncate"
+					href={`https://sepolia.etherscan.io/address/${account?.address}`}
+				>
+					<User
+						avatarProps={{ radius: "full", src: "" }}
+						// avatarProps={<MetaMaskIcon />}
+						name={account?.address}
+						description={account?.balance + " ETH"}
+					>
+						{account?.address}
+					</User>
+				</Link>
+
 				<ListItem contract={contract} setItems={setItems} />
 			</div>
 			<ItemsListTable
