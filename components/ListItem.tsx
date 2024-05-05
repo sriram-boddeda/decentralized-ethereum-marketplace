@@ -10,10 +10,10 @@ import {
 	useDisclosure,
 	Code,
 	Link,
+	Spinner,
 } from "@nextui-org/react";
 import { button as buttonStyles } from "@nextui-org/theme";
 import { ethers } from "ethers";
-import { Spinner } from "@nextui-org/react";
 
 export default function ListItem({
 	contract,
@@ -53,6 +53,12 @@ export default function ListItem({
 		} finally {
 			setIsAddingItem(false); // Hide loader
 		}
+	}
+
+	function clearListValues() {
+		setItemName("");
+		setItemPrice("");
+		setItemDescription("");
 	}
 
 	return (
@@ -96,8 +102,7 @@ export default function ListItem({
 									Close
 								</Button>
 								<Button color="primary" onPress={onClose} onClick={addItem}>
-									{isAddingItem ? <Spinner /> : "List item"}{" "}
-									{/* Show loader or button text */}
+									List item
 								</Button>
 							</ModalFooter>
 						</>
@@ -120,12 +125,24 @@ export default function ListItem({
 						</Link>
 					</ModalBody>
 					<ModalFooter>
-						<Button color="primary" onPress={onAddedClose}>
+						<Button
+							color="primary"
+							onPress={onAddedClose}
+							onClick={clearListValues}
+						>
 							Close
 						</Button>
 					</ModalFooter>
 				</ModalContent>
 			</Modal>
+			{isAddingItem && (
+				<div
+					className="fixed top-0 left-0 z-50 w-screen h-screen backdrop-filter backdrop-blur-sm bg-opacity-50 flex justify-center items-center"
+					style={{ zIndex: 9999 }}
+				>
+					<Spinner color="primary" />
+				</div>
+			)}
 		</div>
 	);
 }

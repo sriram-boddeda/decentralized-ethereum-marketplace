@@ -9,6 +9,7 @@ import {
 	Link,
 	Code,
 	Button,
+	Spinner,
 } from "@nextui-org/react";
 import React, { useState } from "react";
 import { PurchaseIcon } from "./icons";
@@ -26,6 +27,7 @@ export default function PurchaseItem({
 }) {
 	const [transactionHash, setTransactionHash] = useState("");
 	const [isPurchasingItem, setIsPurchasingItem] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	const {
 		isOpen: isPurchasedOpen,
 		onOpen: onPurchasedOpen,
@@ -39,6 +41,7 @@ export default function PurchaseItem({
 	async function purchaseItem(id: number) {
 		if (!contract) return;
 		try {
+			setIsLoading(true);
 			const tx = await contract.purchaseItem(id, {
 				value: item.price,
 			});
@@ -48,6 +51,7 @@ export default function PurchaseItem({
 			const updatedItems = await contract.getItems();
 			setItems(updatedItems);
 		} catch (error) {
+			// Handle errors
 			const errMessage = (error as Error).message;
 			if (errMessage.includes("user rejected transaction")) {
 				console.error("User rejected the transaction");
@@ -60,8 +64,11 @@ export default function PurchaseItem({
 			} else {
 				console.error("Error purchasing item:", errMessage);
 			}
+		} finally {
+			setIsLoading(false);
 		}
 	}
+
 	return (
 		<div>
 			<Tooltip
@@ -105,6 +112,12 @@ export default function PurchaseItem({
 					</ModalFooter>
 				</ModalContent>
 			</Modal>
+			{/* Render spinner overlay if isLoading is true */}
+			{isLoading && (
+				<div className="fixed top-0 left-0 z-50 w-screen h-screen backdrop-filter backdrop-blur-sm bg-opacity-50 flex justify-center items-center">
+					<Spinner color="primary" size="lg" />
+				</div>
+			)}
 		</div>
 	);
 }

@@ -1,3 +1,4 @@
+import React from "react";
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { siteConfig } from "@/config/site";
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 	},
 	description: siteConfig.description,
 	icons: {
-		icon: "/favicon.ico",
+		icon: siteConfig.icon,
 	},
 };
 
@@ -38,11 +39,6 @@ export default function RootLayout({
 					"min-h-screen bg-background font-sans antialiased",
 					fontSans.variable
 				)}
-				// style={{
-				// 	backgroundImage: "url('/ethereum-eth-logo.png')",
-				// 	backgroundRepeat: "repeat",
-				// 	backgroundSize: "500px 500px",
-				// }}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<div className="relative flex flex-col h-screen">
