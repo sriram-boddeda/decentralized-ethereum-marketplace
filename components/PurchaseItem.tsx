@@ -20,7 +20,7 @@ export default function PurchaseItem({
 	setItems,
 }: {
 	item: any;
-	accountAddress: string;
+	accountAddress: string | undefined;
 	contract: any;
 	setItems: React.Dispatch<React.SetStateAction<any[]>>;
 }) {
@@ -33,7 +33,7 @@ export default function PurchaseItem({
 	} = useDisclosure();
 
 	const isDisabled: boolean =
-		item.owner.toString().toLowerCase() === accountAddress.toLowerCase() ||
+		item.owner.toString().toLowerCase() === accountAddress?.toLowerCase() ||
 		item.isSold;
 
 	async function purchaseItem(id: number) {
@@ -67,7 +67,7 @@ export default function PurchaseItem({
 			<Tooltip
 				showArrow={true}
 				content={
-					item.owner.toString().toLowerCase() === accountAddress.toLowerCase()
+					item.owner.toString().toLowerCase() === accountAddress?.toLowerCase()
 						? "Cannot purchase your own item"
 						: item.isSold
 						? "Item is already sold!"

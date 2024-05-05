@@ -23,7 +23,7 @@ export default function ItemsListTable({
 }: {
 	items: Item[];
 	setItems: React.Dispatch<React.SetStateAction<Item[]>>;
-	accountAddress: string;
+	accountAddress: string | undefined;
 	contract: ethers.Contract;
 }) {
 	const [page, setPage] = useState(1);
@@ -105,4 +105,3 @@ export default function ItemsListTable({
 		</Table>
 	);
 }
-

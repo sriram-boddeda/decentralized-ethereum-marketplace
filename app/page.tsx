@@ -1,5 +1,5 @@
-import Marketplace from "../components/Marketplace";
+import HomePage from "@/components/HomePage";
 
 export default function Home() {
-	return <Marketplace />;
+	return <HomePage />;
 }
