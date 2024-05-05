@@ -1,7 +1,7 @@
 import { ethers } from "ethers";
 
 export const getSigner = (index = 0) => {
-	const provider = new ethers.providers.Web3Provider(window.ethereum);
+	const provider = new ethers.providers.Web3Provider((window as any).ethereum);
 	const signer = provider.getSigner(index);
 	return signer;
 };
