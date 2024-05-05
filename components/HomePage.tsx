@@ -32,7 +32,7 @@ export default function HomePage() {
 					</p>
 				</div>
 			</section>
-			<div className="w-full mt-8 items-center">
+			<div className="w-full mt-8 justify-center">
 				{isMetaMaskConnected ? (
 					<Marketplace account={account} provider={provider} />
 				) : (

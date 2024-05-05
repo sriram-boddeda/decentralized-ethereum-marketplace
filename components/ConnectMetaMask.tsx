@@ -3,6 +3,15 @@ import { Button } from "@nextui-org/button";
 import { ethers } from "ethers";
 import { MetaMaskIcon } from "@/components/icons";
 import Account from "@/types/Account";
+import {
+	Card,
+	CardHeader,
+	CardBody,
+	CardFooter,
+	Divider,
+	Link,
+	Image,
+} from "@nextui-org/react";
 
 export default function ConnectMetaMask({
 	setProvider,
@@ -53,17 +62,46 @@ export default function ConnectMetaMask({
 			console.error("Error connecting to wallet:", error);
 		}
 	};
+
 	return (
-		<div>
-			<Button
-				onClick={connectToWallet}
-				size="lg"
-				color="secondary"
-				className="transition duration-200"
-			>
-				<MetaMaskIcon className="h-30 w-30 transform hover:-translate-y-1 hover:scale-200 transition-transform duration-200" />
-				<span className="ml-2">Connect your Metamask Wallet</span>
-			</Button>
+		<div className="flex items-center justify-center h-full">
+			<Card className="max-w-[400px]">
+				<CardHeader className="flex gap-3 items-center">
+					<Image
+						alt="MetaMask logo"
+						height={40}
+						radius="sm"
+						src="https://avatars.githubusercontent.com/u/11744586?s=200&v=4"
+						width={40}
+					/>
+					<div className="flex flex-col">
+						<p className="text-md">MetaMask</p>
+						<p className="text-small text-default-500">Connect Your Wallet</p>
+					</div>
+				</CardHeader>
+				<Divider />
+				<CardBody>
+					<div className="text-center mb-8">
+						<p className="text-sm">
+							Connect your MetaMask wallet to access the features of CryptoMart.
+						</p>
+					</div>
+					<Button
+						onClick={connectToWallet}
+						size="lg"
+						color="secondary"
+						className="transition duration-200 w-full"
+					>
+						<MetaMaskIcon className="h-30 w-30 transform hover:-translate-y-1 hover:scale-200 transition-transform duration-200" />
+						<span className="ml-2">Connect</span>
+					</Button>
+				</CardBody>
+				<CardFooter>
+					<Link isExternal showAnchorIcon href="https://metamask.io/">
+						Official MetaMask Website
+					</Link>
+				</CardFooter>
+			</Card>
 		</div>
 	);
 }
