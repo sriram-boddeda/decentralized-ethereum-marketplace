@@ -20,11 +20,11 @@ contract Marketplace {
 
     constructor() {
         // Initialize items
-        // addItem("Laptop", 50000000, "Brand new laptop with high performance specs.");
-        // addItem("Headphones", 2000000000, "Wireless headphones with noise cancellation feature.");
-        // addItem("Smartphone", 3000000000, "Latest smartphone model with advanced camera technology.");
-        // addItem("Smart Watch", 1000000000, "Fitness tracker and smartwatch with heart rate monitor.");
-        // addItem("Gaming Console", 4000000000, "Next-gen gaming console with 4K resolution support.");
+        addItem("Laptop", 50000000, "Brand new laptop with high performance specs.");
+        addItem("Headphones", 2000000000, "Wireless headphones with noise cancellation feature.");
+        addItem("Smartphone", 3000000000, "Latest smartphone model with advanced camera technology.");
+        addItem("Smart Watch", 1000000000, "Fitness tracker and smartwatch with heart rate monitor.");
+        addItem("Gaming Console", 4000000000, "Next-gen gaming console with 4K resolution support.");
         addItem("Rubber Chicken", 10000000000, "Classic rubber chicken for all your comedic needs.");
         addItem("Whoopie Cushion", 5000000000, "Fart noise maker disguised as a cushion.");
         addItem("Glow-in-the-Dark Toilet Paper", 300000000, "Never miss the toilet again with this glowing toilet paper.");
@@ -53,10 +53,10 @@ contract Marketplace {
 
         return itemsArray;
     }
-
+    
     function purchaseItem(uint256 _id) public payable {
         Item storage item = items[_id];
-        require(item.id != 0, "Item not found");
+        require(bytes(item.name).length > 0, "Item not found");
         require(!item.isSold, "Item is already sold");
         require(msg.value >= item.price, "Insufficient funds");
         require(item.owner != msg.sender, "You cannot purchase your own item");
