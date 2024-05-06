@@ -1,7 +1,5 @@
 # CryptoMart
 
----
-
 CryptoMart is a decentralized marketplace on Ethereum, allowing users to list, buy, and sell items via smart contracts. This guide covers getting started, running the project, deploying the smart contract, and accessing key contract details.
 
 ## Website URL
@@ -108,5 +106,3 @@ After deploying the smart contract, you can obtain the contract address and ABI 
 ## License
 
 Licensed under the [MIT license](https://github.com/sriram-boddeda/decentralized-ethereum-marketplace/blob/main/LICENSE).
-
----
