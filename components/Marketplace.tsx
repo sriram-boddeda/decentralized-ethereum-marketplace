@@ -44,9 +44,11 @@ export default function MarketPlace({
 					href={`https://sepolia.etherscan.io/address/${account?.address}`}
 				>
 					<User
-						avatarProps={{ radius: "full", src: "" }}
-						// avatarProps={<MetaMaskIcon />}
-						name={account?.address}
+						avatarProps={{
+							radius: "full",
+							src: "https://avatars.githubusercontent.com/u/11744586?s=200&v=4",
+						}}
+						name={<span className="truncate">{account?.address}</span>}
 						description={account?.balance + " ETH"}
 					>
 						{account?.address}
