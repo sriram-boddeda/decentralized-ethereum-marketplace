@@ -96,7 +96,7 @@ export default function ConnectMetaMask({
 						<span className="ml-2">Connect</span>
 					</Button>
 				</CardBody>
-				<CardFooter>
+				<CardFooter className="justify-center">
 					<Link isExternal showAnchorIcon href="https://metamask.io/">
 						Official MetaMask Website
 					</Link>
